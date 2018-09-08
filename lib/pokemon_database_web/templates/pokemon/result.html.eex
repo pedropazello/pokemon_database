@@ -1,0 +1,14 @@
+<table class="table">
+  <thead>
+    <th>#</th>
+    <th>Name</th>
+  </thead>
+  <tbody>
+    <%= for pokemon <- @all_pokemon do %>
+      <tr>
+        <td><%= pokemon.number %></td>
+        <td><%= pokemon.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
