@@ -2,6 +2,7 @@ defmodule PokemonDatabase.Seeds do
   alias PokemonDatabase.Repo
   alias PokemonDatabase.Pokeapi
   alias PokemonDatabase.Pokemon
+  alias PokemonDatabase.PokemonElasticsearch
 
   def insert_pokemon do
     {:ok, response} = Pokeapi.pokemon
@@ -10,10 +11,12 @@ defmodule PokemonDatabase.Seeds do
 
   defp insert_results(response) do
     for result <- response.body["results"]  do
-      Repo.insert!(%Pokemon{
+      pokemon = Repo.insert!(%Pokemon{
         name:   result["name"],
         number: get_number(result["url"])
       })
+
+      PokemonElasticsearch.insert(pokemon)
     end
 
     insert_paginated_pokemon(get_offset(response.body["next"]))
