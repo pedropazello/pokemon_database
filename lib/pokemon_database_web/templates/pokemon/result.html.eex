@@ -1,3 +1,5 @@
+<%= render PokemonDatabaseWeb.PokemonView,
+  "_search.html", conn: @conn %>
 <table class="table">
   <thead>
     <th>#</th>

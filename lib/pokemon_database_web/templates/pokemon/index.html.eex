@@ -1,12 +1,3 @@
 <h1>Search a Pokémon</h1>
-
-<%= form_for @conn, pokemon_path(@conn, :index), [method: :get], fn f -> %>
-  <div class="row">
-    <div class="col-md-10">
-      <%= text_input f, :q, class: "form-control" %>
-    </div>
-    <div class="col-md-2">
-      <%= submit "Search", class: "btn btn-primary" %>
-    </div>
-  </div>
-<% end %>
+<%= render PokemonDatabaseWeb.PokemonView,
+  "_search.html", conn: @conn %>
